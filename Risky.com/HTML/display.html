@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Form Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: rgba(25, 250, 25, 0.259);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Loan Application Details</h2>
+
+        <div class="detail">
+            <label>Bounced in Last 12 Months:</label>
+            <span id="displayBounced12Months"></span>
+        </div>
+
+        <div class="detail">
+            <label>Bounced While Repaying:</label>
+            <span id="displayBouncedRepaying"></span>
+        </div>
+
+        <div class="detail">
+            <label>Age at Loan Taken:</label>
+            <span id="displayAgeLoanTaken"></span>
+        </div>
+
+        <div class="detail">
+            <label>30 Days Past Due in Last 6 Months:</label>
+            <span id="displayPastDue30"></span>
+        </div>
+
+        <div class="detail">
+            <label>60 Days Past Due in Last 6 Months:</label>
+            <span id="displayPastDue60"></span>
+        </div>
+
+        <div class="detail">
+            <label>90 Days Past Due in Last 3 Months:</label>
+            <span id="displayPastDue90"></span>
+        </div>
+
+        <div class="detail">
+            <label>Bounced in First EMI:</label>
+            <span id="displayBouncedFirstEMI"></span>
+        </div>
+
+        <div class="detail">
+            <label>Maximum MOB:</label>
+            <span id="displayMaxMOB"></span>
+        </div>
+
+        <div class="detail">
+            <label>Dealer Codes:</label>
+            <span id="displayDealerCodes"></span>
+        </div>
+
+        <div class="detail">
+            <label>Name:</label>
+            <span id="displayName"></span>
+        </div>
+
+        <div class="detail">
+            <label>Gender:</label>
+            <span id="displayGender"></span>
+        </div>
+
+        <div class="detail">
+            <label>Employment Type:</label>
+            <span id="displayEmploymentType"></span>
+        </div>
+
+        <div class="detail">
+            <label>Customer ID:</label>
+            <span id="displayCustomerID"></span>
+        </div>
+
+        <div class="detail">
+            <label>Loan Amount:</label>
+            <span id="displayLoanAmount"></span>
+        </div>
+
+        <div class="detail">
+            <label>Tenure:</label>
+            <span id="displayTenure"></span>
+        </div>
+    <div class = "button-container">
+        <a href = "risk_disp.html" class = "back-button">Predict Risk</a>
+    </div>
+        <div class="button-container">
+            <a href="input_form.html" class="back-button">Re-fill the Form</a>
+        </div>
+    </div>
+
+    <script>
+        //function fullForm(){
+
+            /*const bounced12months = document.getElementById('bounced12months').value;
+            const bouncedRepaying = document.getElementById('bouncedRepaying').value;
+            const ageLoanTaken = document.getElementById('ageLoanTaken').value;
+            const pastDue30 = document.getElementById('pastDue30').value;
+            const pastDue60 = document.getElementById('pastDue60').value;
+            const pastDue90 = document.getElementById('pastDue90').value;
+
+            const bouncedFirstEMI = document.querySelector('input[name="bouncedFirstEMI"]:checked').value;
+            const maxMOB = document.getElementById('maxMOB').value;
+            const dealerCodes = document.getElementById('dealerCodes').value;
+
+            const name = document.getElementById('name').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const employmentType = document.querySelector('input[name="employmentType"]:checked').value;
+            const customerID = document.getElementById('customerID').value;
+
+            const loanAmount = document.getElementById('loanAmount').value;
+            const tenure = document.getElementById('tenure').value;*/
+
+            const data = JSON.parse(localStorage.getItem('data'));
+            console.log(data);
+            document.getElementById('displayBounced12Months').textContent = data.bounced12months;
+            document.getElementById('displayBouncedRepaying').textContent = data.bouncedRepaying;
+            document.getElementById('displayAgeLoanTaken').textContent = data.ageLoanTaken;
+            document.getElementById('displayPastDue30').textContent = data.pastDue30;
+            document.getElementById('displayPastDue60').textContent = data.pastDue60;
+            document.getElementById('displayPastDue90').textContent = data.pastDue90;
+            document.getElementById('displayBouncedFirstEMI').textContent = data.bouncedFirstEMI;
+            document.getElementById('displayMaxMOB').textContent = data.maxMOB;
+            document.getElementById('displayDealerCodes').textContent = data.dealersCode;
+            document.getElementById('displayName').textContent = data.name;
+            document.getElementById('displayGender').textContent = data.gender;
+            document.getElementById('displayEmploymentType').textContent = data.employmentType;
+            document.getElementById('displayCustomerID').textContent = data.customerID;
+            document.getElementById('displayLoanAmount').textContent = data.loanAmount;
+            document.getElementById('displayTenure').textContent = data.tenure;
+        //}
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Risk Measure</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                background: url('index_back2.png');
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .container {
+                width: 30%;
+                margin: 0 auto;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.821);
+                background-color: #ffffff8b;
+            }
+            .counter-container {
+                font-size: 200px;
+                font-weight: bold;
+            }
+            .interest-info {
+                margin-top: 20px;
+                font-size: 18px;
+                color: #333;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h3>Risk percentage:</h3>
+            <div class="counter-container" id="counter">0</div>
+            <p class="interest-info" id="interest-info"></p>
+        </div>
+        <script>
+            const risk_score = JSON.parse(localStorage.getItem('risk_score'))[0];
+            const riskPercentage = 79//risk_score[1];
+            const ri_const = 79//Math.round(riskPercentage * 100); // Set the value to which the integer will rise
+            const duration = 2000; // Duration of the animation in milliseconds
+            const counterElement = document.getElementById('counter');
+            const interestInfoElement = document.getElementById('interest-info');
+            const presentRate = 7.5;
+
+            function getInterest() {
+                if (riskPercentage <= 35) {
+                    return "Congrats! Our prediction system says you incline towards the Non-defaulter group!\nYou can get the loan at the normal interest rate of: " + presentRate+"%";
+                }
+                if (riskPercentage > 65) {
+                    return "Sorry, our system predicts that you might be a defaulter based on your information.\nKindly take measures to decrease this risk perecntage.";
+                }
+                const minOffset = 0.1;
+                const maxOffset = 1;
+                const minRisk = 35;
+                const maxRisk = 65;
+                let offset = minOffset + ((riskPercentage - minRisk) / (maxRisk - minRisk)) * (maxOffset - minOffset);
+                if (offset > maxOffset) {
+                    offset = maxOffset;
+                }
+                const newInterestRate = presentRate + offset;
+                return "Our prediction system shows the risk is above the safe green level!\nNo worries, you can take a loan at an increased rate of interest of " + newInterestRate+"%";
+            }
+
+            function updateCounterColor(value) {
+                if (value <= 35) {
+                    counterElement.style.color = 'green';
+                } else if (value <= 65) {
+                    counterElement.style.color = 'orange';
+                } else {
+                    counterElement.style.color = 'red';
+                }
+            }
+
+            function animateCounter(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = timestamp - startTime;
+
+                const current = Math.min(Math.floor((progress / duration) * end), end);
+                counterElement.textContent = current;
+                updateCounterColor(current);
+
+                if (progress < duration) {
+                    requestAnimationFrame(animateCounter);
+                } else {
+                    counterElement.textContent = end;
+                    updateCounterColor(end);
+                    interestInfoElement.textContent = getInterest();
+                }
+            }
+
+            let startTime = null;
+            const end = ri_const;
+
+            requestAnimationFrame(animateCounter);
+        </script>
+    </body>
+</html>

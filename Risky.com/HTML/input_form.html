@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('payment.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background-color: rgba(160, 255, 150, 0.392);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        h3 {
+            font-weight: bold;
+            font-size: 18px;
+            color: #34495e;
+            margin-bottom: 15px;
+        }
+        .form-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .form-section .section-content {
+            width: 48%;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], input[type="email"], input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        .button-group label {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .button-group label:last-child {
+            margin-right: 0;
+        }
+        .submit-button {
+            background-color: #27ae60;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            display: block;
+            width: 100%;
+        }
+        .submit-button:hover {
+            background-color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Loan Application Form</h2>
+
+        <!-- Loan Repayment Information and Business Information (Side by Side) -->
+        <div class="form-section">
+            <div class="section-content">
+                <h3>Loan Repayment Information</h3>
+                <label for="bounced12months">Number of times bounced in recent 12 months:</label>
+                <input type="number" id="bounced12months" name="bounced12months" required>
+
+                <label for="bouncedRepaying">Number of times bounced while repaying the loan:</label>
+                <input type="number" id="bouncedRepaying" name="bouncedRepaying" required>
+
+                <label for="ageLoanTaken">Age at which the loan was taken:</label>
+                <input type="number" id="ageLoanTaken" name="ageLoanTaken" required>
+
+                <label for="pastDue30">Number of 30 days past due in last 6 months:</label>
+                <input type="number" id="pastDue30" name="pastDue30" required>
+
+                <label for="pastDue60">Number of 60 days past due in last 6 months:</label>
+                <input type="number" id="pastDue60" name="pastDue60" required>
+
+                <label for="pastDue90">Number of 90 days past due in last 3 months:</label>
+                <input type="number" id="pastDue90" name="pastDue90" required>
+
+                <label>Have bounced in your first EMI:</label>
+                <div class="button-group">
+                    <label><input type="radio" name="bouncedFirstEMI" value="yes" required> Yes</label>
+                    <label><input type="radio" name="bouncedFirstEMI" value="no" required> No</label>
+                </div>
+            </div>
+
+            <div class="section-content">
+                <h3>Business Information</h3>
+                <label for="maxMOB">Maximum MOB:</label>
+                <input type="number" id="maxMOB" name="maxMOB" placeholder="Month of business with TVS Credit" required>
+
+                <label for="dealerCodes">Dealer codes from where customer has purchased/is purchasing the Two wheeler:</label>
+                <input type="text" id="dealerCodes" name="dealerCodes" required>
+            </div>
+        </div>
+
+        <!-- Personal Details and Loan Information (Side by Side) -->
+        <div class="form-section">
+            <div class="section-content">
+                <h3>Personal Details</h3>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label>Gender:</label>
+                <div class="button-group">
+                    <label><input type="radio" name="gender" value="male" required> Male</label>
+                    <label><input type="radio" name="gender" value="female" required> Female</label>
+                    <label><input type="radio" name="gender" value="other" required> Other</label>
+                </div>
+
+                <label>Employment type:</label>
+                <div class="button-group">
+                    <label><input type="radio" name="employmentType" value="housewife" required> Housewife</label>
+                    <label><input type="radio" name="employmentType" value="self-employed" required> Self-employed</label>
+                    <label><input type="radio" name="employmentType" value="salaried" required> Salaried</label>
+                    <label><input type="radio" name="employmentType" value="pensioner" required> Pensioner</label>
+                    <label><input type="radio" name="employmentType" value="student" required> Student</label>
+                </div>
+
+                <label for="customerID">Customer ID:</label>
+                <input type="text" id="customerID" name="customerID" placeholder="Type your 7 digit ID if you are a present customer" pattern="\d{7}" required>
+            </div>
+
+            <div class="section-content">
+                <h3>Loan Information</h3>
+                <label for="loanAmount">Loan Amount:</label>
+                <input type="number" id="loanAmount" name="loanAmount" placeholder="₹" required>
+
+                <label for="tenure">Tenure:</label>
+                <input type="number" id="tenure" name="tenure" placeholder="months" required>
+            </div>
+        </div>
+        <button type="submit" onclick="handleSubmit()" class="submit-button">Submit Details</button>            
+        </div>
+        <a href="display.html" button type = "submit" class="submit-button">Proceed</a>
+    </div>
+
+    <script>
+        async function handleSubmit(event) {
+            //event.preventDefault(); // Prevent the default form submission
+
+            // Collecting form data
+            const bounced12months = document.getElementById('bounced12months').value;
+            const bouncedRepaying = document.getElementById('bouncedRepaying').value;
+            const ageLoanTaken = document.getElementById('ageLoanTaken').value;
+            const pastDue30 = document.getElementById('pastDue30').value;
+            const pastDue60 = document.getElementById('pastDue60').value;
+            const pastDue90 = document.getElementById('pastDue90').value;
+
+            const bouncedFirstEMI = document.querySelector('input[name="bouncedFirstEMI"]:checked').value;
+            const maxMOB = document.getElementById('maxMOB').value;
+            const dealerCodes = document.getElementById('dealerCodes').value;
+
+            const name = document.getElementById('name').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const employmentType = document.querySelector('input[name="employmentType"]:checked').value;
+            const customerID = document.getElementById('customerID').value;
+
+            const loanAmount = document.getElementById('loanAmount').value;
+            const tenure = document.getElementById('tenure').value;
+
+            // Printing the form data to the console
+            /*
+            //console.log('Loan Repayment Information:');
+            console.log('Number of times bounced in recent 12 months:', bounced12months);
+            console.log('Number of times bounced while repaying the loan:', bouncedRepaying);
+            console.log('Age at which the loan was taken:', ageLoanTaken);
+            console.log('Number of 30 days past due in last 6 months:', pastDue30);
+            console.log('Number of 60 days past due in last 6 months:', pastDue60);
+            console.log('Number of 90 days past due in last 3 months:', pastDue90);
+            console.log('Bounced in first EMI:', bouncedFirstEMI);
+
+            //console.log('Business Information:');
+            console.log('Maximum MOB:', maxMOB);
+            console.log('Dealer codes:', dealerCodes);
+
+            //console.log('Personal Details:');
+            console.log('Name:', name);
+            console.log('Gender:', gender);
+            console.log('Employment type:', employmentType);
+            console.log('Customer ID:', customerID);
+
+            //console.log('Loan Information:');
+            console.log('Loan Amount:', loanAmount);
+            console.log('Tenure:', tenure);*/
+
+            const postData = {
+                "features":
+                            [
+                                parseInt(bounced12months),
+                                parseInt(bouncedRepaying),
+                                parseInt(ageLoanTaken),
+                                parseInt(pastDue30),
+                                parseInt(pastDue60),
+                                parseInt(pastDue90),
+                            ],
+                "bouncedFirstEMI": bouncedFirstEMI,
+                "maxMOB": parseInt(maxMOB),
+                "dealerCodes": dealerCodes,
+                "name": name,
+                "customerID": customerID,
+                "loanAmount": parseInt(loanAmount),
+                "tenure": parseInt(tenure),
+                "gender": gender,
+                "employmentType": employmentType,
+            };
+
+            console.log(postData);
+
+            await fetch('http://localhost:8000/predict/',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(postData)
+            }).then(res=>{
+                return res.json();
+            }).then(data=>{
+                console.log(data);
+                localStorage.setItem('data', JSON.stringify(data['details']));
+                localStorage.setItem('defaulter_status', JSON.stringify(data['prediction']));
+                localStorage.setItem('risk_score', JSON.stringify(data['probability']));
+            });
+        }
+    </script>
+
+</body>
+</html>
